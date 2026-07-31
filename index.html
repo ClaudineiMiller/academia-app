@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>🏋️ Meus Exercícios</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <div class="header-top">
+                <h1>🏋️ Meus Exercícios</h1>
+                <div style="display:flex; gap:8px;">
+                    <button id="btn-reload" style="background:#2a2a2a;color:#fff;border:none;padding:8px 16px;border-radius:8px;font-size:14px;cursor:pointer;">🔄</button>
+                    <button id="btn-add" class="btn-add">➕</button>
+                </div>
+            </div>
+            <input type="text" id="busca" placeholder="🔍 Buscar exercício..." autocomplete="off" />
+            <span id="contador">0 exercícios</span>
+        </header>
+
+        <!-- Lista de exercícios -->
+        <div id="lista-exercicios"></div>
+
+        <!-- MODAL: Adicionar/Editar -->
+        <div id="modal-form" class="modal">
+            <div class="modal-content">
+                <h2 id="modal-form-title">Novo Exercício</h2>
+                <form id="form-exercicio">
+                    <input type="hidden" id="edit-id" value="">
+
+                    <div class="form-group">
+                        <label for="nome-exercicio">Nome do Exercício *</label>
+                        <input type="text" id="nome-exercicio" placeholder="Ex: Supino Reto" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="link-exercicio">Link do YouTube</label>
+                        <input type="text" id="link-exercicio" placeholder="https://www.youtube.com/watch?v=abc123">
+                        <small>💡 Pode colocar o link completo ou só o ID do vídeo</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="categoria-exercicio">Categoria (opcional)</label>
+                        <select id="categoria-exercicio">
+                            <option value="">Sem categoria</option>
+                            <option value="Peito">Peito</option>
+                            <option value="Costas">Costas</option>
+                            <option value="Pernas">Pernas</option>
+                            <option value="Ombros">Ombros</option>
+                            <option value="Bíceps">Bíceps</option>
+                            <option value="Tríceps">Tríceps</option>
+                            <option value="Abdômen">Abdômen</option>
+                            <option value="Glúteos">Glúteos</option>
+                            <option value="Quadríceps">Quadríceps</option>
+                            <option value="Posterior">Posterior</option>
+                            <option value="Outro">Outro</option>
+                        </select>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="button" id="btn-cancelar" class="btn-secundario">Cancelar</button>
+                        <button type="submit" id="btn-salvar" class="btn-primario">Salvar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- MODAL: Vídeo -->
+        <div id="modal-video" class="modal">
+            <div class="modal-content">
+                <span class="fechar-video">&times;</span>
+                <h2 id="titulo-video"></h2>
+                <div id="player-video"></div>
+                <div class="video-actions">
+                    <button id="btn-editar-video" class="btn-editar">✏️ Editar</button>
+                    <button id="btn-deletar-video" class="btn-deletar">🗑️ Deletar</button>
+                    <button id="btn-voltar" class="btn-secundario">← Voltar</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- MODAL: Confirmar exclusão -->
+        <div id="modal-confirmar" class="modal">
+            <div class="modal-content confirmar-content">
+                <h2>🗑️ Confirmar exclusão</h2>
+                <p>Tem certeza que deseja excluir o exercício <strong id="confirmar-nome"></strong>?</p>
+                <div class="form-actions">
+                    <button id="btn-cancelar-exclusao" class="btn-secundario">Cancelar</button>
+                    <button id="btn-confirmar-exclusao" class="btn-deletar">Sim, excluir</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+    <script src="firebase-config.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
